@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bimal-ingress
+  namespace: bimal
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx             # type of ingress controller
+  rules:
+  - http:
+      paths:
+      - path: /bimal                  # path for accessing the service
+        pathType: Prefix
+        backend:
+          service:
+            name: bimal-service       # service name from service.yml
+            port:
+              number: 80

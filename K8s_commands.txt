@@ -1,0 +1,46 @@
+kubectl top nodes                 # to see node memory, CPU usage
+kubectl get nodes                 # to see all the worker nodes
+kubectl get nodes -o wide             # to see more info on nodes
+
+kubectl create namespace bimal
+kubectl get namespaces
+
+kubectl apply -f <filename.yml>     # create resources from yaml file
+
+kubectl get all -n bimal            # get all resources
+kubectl get pods -n bimal           # get all pods
+kubectl get pods -o wide -n bimal   # get all pods with more info
+kubectl get deployment -n bimal     # get all deployments
+kubectl get rs -n bimal             # get all replica
+
+kubectl describe pod bimal-deployment-6db95df674 -n bimal     # info about pod
+kubectl describe deployment <deployment-name> -n bimal        # info about deployment
+kubectl describe rs <replica-set-name> -n bimal               # info about replica
+
+kubectl logs bimal-deployment-58c95864d5-vszjq  -n <namespace>
+
+kubectl exec -it bimal-deployment-58c95864d5-vszjq -n bimal -- /bin/bash     # exec into a pod
+kubectl exec -it mongodb-7689445968-njnw8 -n bimal -- mongosh                # exec into mongo pod to check db
+
+kubectl delete all --all -n <namespace>                                       # delete all the resources
+kubectl delete pod --all -n <namespace>                                       # delete all the pods
+kubectl delete pod bimal-deployment-58c95864d5-vszjq  -n <namespace>          # delete a pod
+kubectl delete rs bimal-deployment-58c95864d5 -n <namespace>                  # delete replica set
+kubectl delete deployment bimal-deployment -n <namespace>                     # delete deployment
+kubectl delete ingress
+kubectl delete configmap
+
+kubectl rollout restart deployment bimal-deployment -n bimal     # to restart the deployment
+kubectl rollout undo deployment <deployment-name> -n bimal       # to rollback to older versions
+kubectl rollout status deployment <deployment-name> -n bimal
+kubectl rollout history deployment <deployment-name> -n bimal
+
+# imperative way to update the newer image version of a deployment
+kubectl set image deploment bimal-deployment bimal-nginx=nginx:1.21.3 -n bimal --record
+
+
+Inside mongosh:
+show dbs
+use database_name
+show collections
+db.collection_name.find().pretty()

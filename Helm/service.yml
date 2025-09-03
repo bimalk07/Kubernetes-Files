@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-service
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    app: {{ .Values.labels.app }} 
+  ports:
+    - protocol: TCP
+      port: {{ .Values.service.port }}     # svc port number and its our wish, ACCESS THE APP
+      targetPort: {{ .Values.port}}        # container port number and we shouldn't change it
+  type: {{ .Values.service.type }}

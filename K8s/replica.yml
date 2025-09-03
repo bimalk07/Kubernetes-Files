@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: bimal-replica
+  namespace: bimal
+  labels:
+    app: bimal-nginx-rs
+spec:
+  replicas: 3               # number of pod replicas
+  selector:
+    matchLabels:
+      app: bimal-nginx-rs
+  template:
+    metadata:
+      labels:
+        app: bimal-nginx-rs
+    spec:
+      containers:
+      - name: bimal-user-rs
+        image: nginx:latest
+        ports: 
+        - containerPort: 80

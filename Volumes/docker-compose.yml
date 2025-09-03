@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  nodejs:
+    build: .
+    ports:
+      - '3130:3130'
+    depends_on:
+      - mongodb
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/myDatabase  
+      - SESSION_SECRET=1234
+      - PORT=3130
+      - EMAIL_USER=chagantyteja2502@gmail.com
+      - EMAIL_PASS=yxoq bjuk rdnt alzp
+  mongodb:
+    image: mongo:latest
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./data:/data/db

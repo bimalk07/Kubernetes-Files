@@ -1,0 +1,27 @@
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
+ls
+
+helm version
+helm list
+helm create bimal-ipl-chart
+
+apt install tree -y
+tree bimal-ipl-chart/
+    bimal-ipl-chart/
+    ├── Chart.yaml
+    ├── charts
+    ├── templates
+    │   ├── deployment.yml
+    │   └── service.yml
+    └── values.yaml
+
+go to outside the directory -> tree bimal-ipl-chart/
+delete rest of the files in templates/
+create deployment.yml, service.yml and paste the values in values.yml present in root directory
+
+
+helm install bimal-ipl-release --debug --dry-run bimal-ipl-chart
+helm install bimal-ipl-release bimal-ipl-chart    --> Run only once to deploy
+helm upgrade bimal-ipl-release bimal-ipl-chart    --> If any changes, only upgrade

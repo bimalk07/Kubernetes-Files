@@ -1,0 +1,15 @@
+# NodePort
+apiVersion: v1
+kind: Service
+metadata:
+  name: bimal-service
+  namespace: bimal
+spec:
+  selector:
+    app: bimal-pod
+  ports:
+    - protocol: TCP
+      port: 80                    # service port and it can be any port
+      targetPort: 3000            # container port, same as deployment containerPort
+      nodePort: 31200
+  type: NodePort

@@ -1,0 +1,7 @@
+bimal-ipl-chart/
+├── Chart.yaml
+├── charts
+├── templates
+│   ├── deployment.yml
+│   └── service.yml
+└── values.yaml

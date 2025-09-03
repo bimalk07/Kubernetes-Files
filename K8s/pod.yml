@@ -1,0 +1,16 @@
+
+# Script for creating Pod
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: bimal-pod     # pod name
+  namespace: bimal    # namespace created in aws server
+  labels:
+    app: bimal-container
+spec:
+  containers:
+  - name: bimal-nginx
+    image: nginx:latest
+    ports:
+    - containerPort: 80

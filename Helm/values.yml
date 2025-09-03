@@ -1,0 +1,12 @@
+namespace: bimal
+replicas: 2
+labels:
+  app: ipl
+name: c-1
+image:
+  repository: muralisocial123/ipl
+  tag: latest
+port: 3000
+service:
+  port: 80
+  type: LoadBalancer

@@ -1,0 +1,14 @@
+# External Name
+apiVersion: v1
+kind: Service
+metadata:
+  name: bimal-service
+  namespace: bimal
+spec:
+  selector:
+    app: ipl
+  ports:
+    - protocol: TCP
+      port: 80
+      externalName: flipkart.com, amazon.com, google.com
+  type: ExternalName

@@ -1,0 +1,25 @@
+apiVersion: apps/v1            # API group
+kind: Deployment               # type of object
+metadata:                      # info to identify the deployment
+  name: bimal-deployment
+  namespace: bimal
+spec:                                   # describe the state of app
+  replicas: 2                           # create replicas of the pod
+  selector:                             # to find the pods
+    matchLabels:
+      app: ipl
+  template:                             # blueprint for creating each pod
+    metadata:
+      labels:
+        app: ipl
+    spec:                                    # Specification for pods
+      containers:                            # container for pod
+        - name: c-1                          # container name
+          image: muralisocial123/ipl-app:v1
+          ports:
+            - containerPort: 3000         # listen for traffic on this port
+          envFrom:                        # environment variables
+            - configMapRef:
+                name: bimal-configmap     # from configmap file
+            - secretRef:
+                name: bimal-secret        # from secret file

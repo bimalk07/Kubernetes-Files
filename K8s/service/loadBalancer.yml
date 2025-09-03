@@ -1,0 +1,14 @@
+# Load balancer
+apiVersion: v1
+kind: Service
+metadata:
+  name: bimal-service
+  namespace: bimal
+spec:
+  selector:
+    app: ipl
+  ports:
+    - protocol: TCP
+      port: 80            # service port and it can be any port, ACCESS THE APP
+      targetPort: 3000    # container port, same as deployment containerPort
+  type: LoadBalancer

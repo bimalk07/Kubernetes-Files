@@ -1,0 +1,10 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: bimal-sc
+  namespace: bimal
+provisioner: ebs.csi.aws.com
+volumeBindingMode: WaitForFirstConsumer
+reclaimPolicy: Delete                # Retain to keep the PV after PVC deletion, Delete to remove it
+parameters:
+  type: gp2                          # EBS volume type (gp2, gp3, io1, io2, st1, sc1, standard)
