@@ -87,7 +87,7 @@ metadata:
   namespace: Bimal
 data:
   MONGODB_URI: "mongodb://mongodb:27017/myDatabase"
-  DB_PORT" "27071"
+  DB_PORT: "27071"
 
 
 # SECRET
