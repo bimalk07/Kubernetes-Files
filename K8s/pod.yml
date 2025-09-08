@@ -10,7 +10,7 @@ metadata:
     app: bimal-container
 spec:
   containers:
-  - name: bimal-nginx
+    - name: bimal-nginx
     image: nginx:latest
     ports:
     - containerPort: 80
