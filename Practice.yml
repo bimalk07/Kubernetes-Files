@@ -1,0 +1,108 @@
+# POD
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-file
+  namespace: Bimal
+spec:
+  containers:
+    - name: my-container
+      image: bimalk074/ghee:v1
+      ports:
+      -  containerPort: 3000
+
+
+# DEPLOYMENT
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-file
+  namespace: bimal
+spec:
+  replicas: 2
+  selector:
+    matchLabels: 
+      app: my-pod
+  template:
+    metadata:
+      labels:
+        app: my-pod
+  spec:
+    containers:
+      - name:
+      image: bimalk074/todo:v1
+      ports:
+      - containerPort: 3000
+      envFrom:
+        - configMapRef:
+            name: config-file
+        - secretRef:
+            name: secret-file
+
+
+# REPLICA SET
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: replica-file
+  namespace: Bimal
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-pod
+  template:
+    metadata:
+      labels:
+        app: my-pod
+    spec:
+      containers:
+        - name: container
+          image: bimalk074/ghee:v1
+          ports:
+            containerPort: 3000
+
+
+# SERVICE
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-file
+  namespace: Bimal
+spec:
+  selector:
+    app: my-pod
+  ports:
+    - port: 80
+      targetPort: 3000
+      protocol: TCP
+  type: LoadBalancer 
+
+
+# CONFIGMAP
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-file
+  namespace: Bimal
+data:
+  MONGODB_URI: "mongodb://mongodb:27017/myDatabase"
+  DB_PORT" "27071"
+
+
+# SECRET
+apiVersion: v1
+kind: Secret
+metadata:
+  name: secret-file
+  namespace: Bimal
+data:
+  EMAIL_USER: "admin@gmail.com"
+  EMAIL_PASS: "abcd efgh mnop"
+  SESSION_SECRET: "1234"
+
+
+
+
+
+

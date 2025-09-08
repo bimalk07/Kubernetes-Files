@@ -6,7 +6,7 @@ ls
 
 helm version
 helm list
-helm create bimal-ipl-chart
+helm create bimal-ipl-chart    --> helm chart name
 
 apt install tree -y
 tree bimal-ipl-chart/
